@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>KILO Music - Producer/DJ</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Questrial" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro:900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Cabin:700i" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+<!-- source: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Realizing_common_layouts_using_CSS_Grid_Layout -->
+
+    <div class="wrapper">
+            <header class="main-head PEP">
+            </header>
+            <nav class="main-nav">
+                <ul>
+                    <li> <a href="index.html" class="outline">Home</a></li>
+                    <li><a href="http://www.soundcloud.com/kilomusicofficial" target="_blank" class="outline">Music</a></li>
+                    <li><a href="http://instagram.com/kilomusicofficial"  target='_blank' class="outline">Lifestyle</a></li>
+                    <li><a href="bio.html"  class="outline">Bio</a> </li>
+                    <li class="active"><a href="contact.html"  class="outline">Contact</a> </li>
+                </ul>
+            </nav>
+            <article class="contact">
+              <h2>Contact</h2>
+              <form id="form" action="json/request.json">
+                <div class="form-group">
+                  <label for="inputName">Name</label>
+                  <input type="text" class="form-control" id="inputName" name="name">
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail">Email</label>
+                  <input type="email" class="form-control" id="inputEmail" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="inputComment">Message</label>
+                  <textarea class="form-control" id="inputComment" name="comment" rows="6"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <h3> Contact/Promos: kilomusicofficial@gmail.com </h3>
+              </form>
+
+</article>
+    </div>
+  <script type="text/javascript">
+    $(function () {
+      var $body = $(document.body);
+      var $form = $('#form');
+      var $name = $form.find('#inputName');
+
+      $form.submitter({
+        dataType: 'json',
+        start: function (e) {
+          if (!$name.val()) {
+            e.preventDefault(); // Prevent submit
+            $name.focus();
+
+            // Tooltip: https://github.com/fengyuanchen/tooltip
+            $body.tooltip('Please enter a name', 'warning');
+          }
+        },
+        done: function (e, data) {
+          if ($.isPlainObject(data) && data.success) {
+            $body.tooltip(data.result, 'success');
+          }
+        },
+        fail: function (e, textStatus) {
+          $body.tooltip(textStatus, 'danger');
+        }
+      });
+    });
+    </script>
+
+    <footer class="main-footer">© KILO Music 2018</footer>
+
+  </body>
+</html>
