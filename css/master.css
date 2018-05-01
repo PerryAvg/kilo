@@ -3,6 +3,7 @@ body {
    font-family: 'Questrial', sans-serif;
    font-size: 25px;
    text-align: center;
+
 }
 /* .wrapper * {
   background: blue;
@@ -17,11 +18,13 @@ h1 {
   grid-area: content;
   background: black;
 
+
 }
 
 p {
   color: white;
   font-size: 20px;
+  line-height: 40px;
 }
 
 .perryc {
